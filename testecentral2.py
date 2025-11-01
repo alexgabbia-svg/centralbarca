@@ -14,7 +14,7 @@ from datetime import date, datetime, timedelta
 from collections import defaultdict
 
 # ---------------- Config ----------------
-APP_TITLE = "Central do Barça — Final v2"
+APP_TITLE = "Central do Barça — Dados e Estatísticas"
 DATA_DIR = "central_data"
 DB_FILE = os.path.join(DATA_DIR, "db.json")
 ADMIN_PWD = "barca123"
@@ -305,6 +305,17 @@ def edit_ranking_form(kind, mapping, value_label):
 
 # ---------------- UI pages ----------------
 def page_dashboard():
+    # Logo + título
+    col1, col2 = st.columns([1, 4])
+    with col1:
+        st.image("barca_logo.png", width=120)
+    with col2:
+        st.markdown(
+            "<h1 style='color:#FFA500; font-weight:800;'>Central do Barça - Dados e Estatísticas</h1>",
+            unsafe_allow_html=True
+        )
+
+    st.markdown("---")
     st.markdown("<div class='card'>", unsafe_allow_html=True)
     st.markdown(f"<h2 style='color:{ACCENT}'>Dashboard</h2>", unsafe_allow_html=True)
 
@@ -821,3 +832,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
