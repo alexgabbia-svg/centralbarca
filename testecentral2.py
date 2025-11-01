@@ -304,6 +304,27 @@ def edit_ranking_form(kind, mapping, value_label):
             st.rerun()
 
 # ---------------- UI pages ----------------
+from PIL import Image
+import io
+
+# Exibe o logo com transparência preservada
+def exibir_logo():
+    import streamlit as st
+    from PIL import Image
+
+    logo_path = "barca_logo.png"  # caminho da sua imagem
+    try:
+        logo = Image.open(logo_path).convert("RGBA")  # força transparência verdadeira
+
+        # Cria fundo transparente
+        alpha = logo.split()[-1]
+        bg = Image.new("RGBA", logo.size, (255, 255, 255, 0))
+        bg.paste(logo, mask=alpha)
+
+        st.image(bg, use_container_width=False, width=250)
+    except Exception as e:
+        st.warning(f"Não foi possível carregar o logo: {e}")
+        
 def page_dashboard():
     # Logo + título
     col1, col2 = st.columns([1, 4])
@@ -832,4 +853,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
